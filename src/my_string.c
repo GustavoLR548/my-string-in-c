@@ -107,4 +107,8 @@ string* substring(const string* s, int startIndex, int endIndex) {
     return result;
 }
 
+bool equals(const string* s, const char* arr) {
+    return strcmp(s->chars,arr) == 0;
+}
+
 
