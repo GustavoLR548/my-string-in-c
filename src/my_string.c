@@ -97,3 +97,14 @@ string* strip(string* s) {
     s->chars[i + 1] = '\0';
     return s;
 }
+
+string* substring(const string* s, int startIndex, int endIndex) {
+
+    string* result = new_string();
+
+    strncpy(result->chars,s->chars + startIndex,endIndex);
+
+    return result;
+}
+
+
