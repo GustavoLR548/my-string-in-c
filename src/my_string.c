@@ -7,13 +7,15 @@
 string* new_string() {
     string* s = (string*)malloc(sizeof(string));
     s->chars  = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
+    s->split_length = -1;
 
     return s;
 }
 
 string* new_string_array(int n) {
     string* s = (string*)malloc(sizeof(string) * n);
-    
+    s->split_length = -1;
+
     for(int i = 0 ; i < n ; i++) {
         s[i].chars = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
     }
@@ -25,6 +27,7 @@ string* new_string_from_char_array(char* array) {
     string* s = (string*)malloc(sizeof(string));
     s->chars  = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
     strncpy(s->chars,array,strlen(array));
+    s->split_length = -1;
 
     return s;
 }
@@ -39,6 +42,7 @@ string* read_line() {
     fgets(resp->chars, MAX_STRING_LENGTH, stdin);
 
     resp->chars[length(resp)-1] = '\0';
+    resp->split_length = -1;
 
     return resp;
 }
@@ -47,7 +51,8 @@ string* clone(string* s) {
 
     string* clone = new_string();
     
-    strncpy(clone->chars,s->chars,strlen(s->chars));
+    strncpy(clone->chars,s->chars,length(s));
+    clone->split_length = -1;
 
     return clone;
 }
@@ -93,7 +98,7 @@ string* strip(string* s) {
     int i;
 
     while (isspace (*s->chars)) s->chars++;   
-    for (i = strlen(s->chars) - 1; (isspace (s->chars[i])); i--) ;   
+    for (i = length(s) - 1; (isspace (s->chars[i])); i--) ;   
     s->chars[i + 1] = '\0';
     return s;
 }
@@ -101,10 +106,69 @@ string* strip(string* s) {
 string* substring(const string* s, int startIndex, int endIndex) {
 
     string* result = new_string();
-
-    strncpy(result->chars,s->chars + startIndex,endIndex);
+    
+    for (int i = startIndex; i < endIndex; i++)
+        append_char(result,s->chars[i]);
 
     return result;
+}
+
+string* split(string* s, const char* pattern) {
+    
+    int i = 0;
+    int pattern_length = strlen(pattern);
+    int start_index =0, final_index=0;
+
+    char* token = (char*)malloc(sizeof(char)*length(s));
+    strncpy(token,s->chars,length(s));
+
+    while(true) {
+        i++;
+
+        token = strstr(token,pattern);
+        if (token == NULL)
+            break;
+        token += pattern_length;
+    }
+    string* array = new_string_array(i);
+    i = 0;
+
+    free(token);
+    token = (char*)malloc(sizeof(char)*length(s));
+    strncpy(token,s->chars,length(s));
+
+    while(true) {
+
+        char* token_copy= (char*)malloc(sizeof(char)*length(s));
+        strncpy(token_copy, token, strlen(token));
+        token_copy[strlen(token)]='\0';
+
+        token = strstr(token,pattern);
+        if (token == NULL) {
+            if ( strlen(token_copy + pattern_length) >= 0 ) {
+
+                string* tmp = new_string_from_char_array(token_copy);
+                array[i++] = *tmp; 
+                free(tmp);
+            }
+            break;
+            
+        } else {
+            final_index = length(s) - strlen(token);
+            string* tmp = substring(s, start_index,final_index);
+            array[i++] = *tmp; 
+            start_index = final_index + pattern_length;
+
+            free(tmp);
+        }
+        token += pattern_length;
+        free(token_copy);
+    }
+    free(token);
+    
+    array->split_length = i;
+
+    return array;
 }
 
 bool equals(const string* s, const char* arr) {

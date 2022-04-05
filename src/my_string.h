@@ -11,6 +11,7 @@
 
 typedef struct string {
     char* chars;
+    size_t split_length;
 }string;
 
 string* new_string();
@@ -25,6 +26,7 @@ void append_char_array(string* dest,const char* src);
 bool contains_char_array(const string* str1, const char* str2);
 string* strip(string* s);
 string* substring(const string* s, int startIndex, int endIndex);
+string* split(string* s, const char* pattern);
 bool equals(const string* s,const char* arr);
 
 #endif
