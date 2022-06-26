@@ -4,30 +4,28 @@
 #include<ctype.h>
 #include"my_string.h"
 
-string* new_string() {
-    string* s = (string*)malloc(sizeof(string));
-    s->chars  = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
-    s->split_length = -1;
+string new_string() {
+    string s;
+    s.chars  = (char*)calloc(1, sizeof(char));
+    s.array_size   = 1;
 
     return s;
 }
 
 string* new_string_array(int n) {
     string* s = (string*)malloc(sizeof(string) * n);
-    s->split_length = -1;
+    s->array_size = n;
 
     for(int i = 0 ; i < n ; i++) {
-        s[i].chars = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
+        s[i].chars = (char*)calloc(1,sizeof(char));
     }
 
     return s;
 }
 
-string* new_string_from_char_array(char* array) {
-    string* s = (string*)malloc(sizeof(string));
-    s->chars  = (char*)malloc(sizeof(char)* MAX_STRING_LENGTH);
-    strncpy(s->chars,array,strlen(array));
-    s->split_length = -1;
+string new_string_from_char_array(char* array) {
+    string s = new_string();
+    strncpy(s.chars,array,strlen(array));
 
     return s;
 }
@@ -36,23 +34,23 @@ size_t length(string* s) {
     return strlen(s->chars);
 }
 
-string* read_line() {
-    string* resp = new_string();
+string read_line() {
+    string resp = new_string();
+    size_t string_size = sizeof(resp.chars);
 
-    fgets(resp->chars, MAX_STRING_LENGTH, stdin);
+    getline(&resp.chars, &string_size, stdin);
 
-    resp->chars[length(resp)-1] = '\0';
-    resp->split_length = -1;
+    resp.chars[length(&resp)-1] = '\0';
 
     return resp;
 }
 
-string* clone(string* s) {
+string clone(string* s) {
 
-    string* clone = new_string();
+    string clone = new_string();
     
-    strncpy(clone->chars,s->chars,length(s));
-    clone->split_length = -1;
+    strncpy(clone.chars,s->chars,length(s));
+    clone.array_size = 1;
 
     return clone;
 }
@@ -60,7 +58,6 @@ string* clone(string* s) {
 char* to_char_array(string* s) {
     return s->chars;
 }
-
 
 void append_char(string* dest,const char src) {
 
@@ -94,21 +91,20 @@ bool contains_char_array(const string* str1, const char* str2) {
     return strstr(str1->chars, str2) != NULL;
 }
 
-string* strip(string* s) {
+void strip(string* s) {
     int i;
 
     while (isspace (*s->chars)) s->chars++;   
     for (i = length(s) - 1; (isspace (s->chars[i])); i--) ;   
     s->chars[i + 1] = '\0';
-    return s;
 }
 
-string* substring(const string* s, int startIndex, int endIndex) {
+string substring(const string* s, int startIndex, int endIndex) {
 
-    string* result = new_string();
+    string result = new_string();
     
     for (int i = startIndex; i < endIndex; i++)
-        append_char(result,s->chars[i]);
+        append_char(&result,s->chars[i]);
 
     return result;
 }
@@ -147,26 +143,22 @@ string* split(string* s, const char* pattern) {
         if (token == NULL) {
             if ( strlen(token_copy + pattern_length) >= 0 ) {
 
-                string* tmp = new_string_from_char_array(token_copy);
-                array[i++] = *tmp; 
-                free(tmp);
+                string tmp = new_string_from_char_array(token_copy);
+                array[i++] = tmp; 
             }
             break;
             
         } else {
             final_index = length(s) - strlen(token);
-            string* tmp = substring(s, start_index,final_index);
-            array[i++] = *tmp; 
+            string tmp = substring(s, start_index,final_index);
+            array[i++] = tmp; 
             start_index = final_index + pattern_length;
 
-            free(tmp);
         }
         token += pattern_length;
         free(token_copy);
     }
     free(token);
-    
-    array->split_length = i;
 
     return array;
 }
@@ -175,4 +167,6 @@ bool equals(const string* s, const char* arr) {
     return strcmp(s->chars,arr) == 0;
 }
 
-
+void free_string(string* s) {
+    free(s->chars);
+}
