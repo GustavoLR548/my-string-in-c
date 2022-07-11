@@ -7,14 +7,12 @@
 string new_string() {
     string s;
     s.chars  = (char*)calloc(1, sizeof(char));
-    s.array_size   = 1;
 
     return s;
 }
 
 string* new_string_array(int n) {
     string* s = (string*)malloc(sizeof(string) * n);
-    s->array_size = n;
 
     for(int i = 0 ; i < n ; i++) {
         s[i].chars = (char*)calloc(1,sizeof(char));
@@ -50,7 +48,6 @@ string clone(string* s) {
     string clone = new_string();
     
     strncpy(clone.chars,s->chars,length(s));
-    clone.array_size = 1;
 
     return clone;
 }
@@ -169,4 +166,13 @@ bool equals(const string* s, const char* arr) {
 
 void free_string(string* s) {
     free(s->chars);
+}
+
+void free_string_array(string* s, int n) {
+
+    for(int i = 0; i < n; i++) {
+        free_string(&s[i]);
+    }
+
+    free(s);
 }

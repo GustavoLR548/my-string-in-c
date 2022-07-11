@@ -11,7 +11,6 @@
 
 typedef struct string {
     char* chars;
-    size_t array_size;
 }string;
 
 string new_string();
@@ -29,5 +28,6 @@ string substring(const string* s, int startIndex, int endIndex);
 string* split(string* s, const char* pattern);
 bool equals(const string* s,const char* arr);
 void free_string(string* s);
+void free_string_array(string* s, int n);
 
 #endif

@@ -1,0 +1,130 @@
+==1018993== Memcheck, a memory error detector
+==1018993== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1018993== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1018993== Command: ./a.out
+==1018993== Parent PID: 1009981
+==1018993== 
+==1018993== Invalid write of size 2
+==1018993==    at 0x484F9E3: memmove (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x49058FE: getdelim (in /usr/lib/libc.so.6)
+==1018993==    by 0x1093C1: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98240 is 0 bytes inside a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid write of size 1
+==1018993==    at 0x4905A34: getdelim (in /usr/lib/libc.so.6)
+==1018993==    by 0x1093C1: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98246 is 5 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x484BD24: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x109377: length (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x1093D1: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98241 is 0 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid write of size 1
+==1018993==    at 0x1093D9: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98245 is 4 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid write of size 1
+==1018993==    at 0x484FA13: memmove (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x49058FE: getdelim (in /usr/lib/libc.so.6)
+==1018993==    by 0x1093C1: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98724 is 3 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x484BD24: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x49065B7: puts (in /usr/lib/libc.so.6)
+==1018993==    by 0x10926A: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98241 is 0 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x4912383: _IO_default_xsputn (in /usr/lib/libc.so.6)
+==1018993==    by 0x49106FA: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib/libc.so.6)
+==1018993==    by 0x490666B: puts (in /usr/lib/libc.so.6)
+==1018993==    by 0x10926A: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a98241 is 0 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x4910714: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib/libc.so.6)
+==1018993==    by 0x490666B: puts (in /usr/lib/libc.so.6)
+==1018993==    by 0x10926A: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a986d4 is 3 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x48504C8: mempcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x491062F: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib/libc.so.6)
+==1018993==    by 0x490666B: puts (in /usr/lib/libc.so.6)
+==1018993==    by 0x10926A: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a986d4 is 3 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== Invalid read of size 1
+==1018993==    at 0x48504D6: mempcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x491062F: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib/libc.so.6)
+==1018993==    by 0x490666B: puts (in /usr/lib/libc.so.6)
+==1018993==    by 0x10926A: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==  Address 0x4a986d2 is 1 bytes after a block of size 1 alloc'd
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x1092A9: new_string (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10939B: read_line (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x10922E: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== 
+==1018993== HEAP SUMMARY:
+==1018993==     in use at exit: 5 bytes in 5 blocks
+==1018993==   total heap usage: 13 allocs, 8 frees, 2,098 bytes allocated
+==1018993== 
+==1018993== 5 bytes in 5 blocks are definitely lost in loss record 1 of 1
+==1018993==    at 0x484AA83: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1018993==    by 0x109301: new_string_array (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993==    by 0x109202: main (in /home/guaruda/HD1/code/my-string-in-c/src/examples/array/a.out)
+==1018993== 
+==1018993== LEAK SUMMARY:
+==1018993==    definitely lost: 5 bytes in 5 blocks
+==1018993==    indirectly lost: 0 bytes in 0 blocks
+==1018993==      possibly lost: 0 bytes in 0 blocks
+==1018993==    still reachable: 0 bytes in 0 blocks
+==1018993==         suppressed: 0 bytes in 0 blocks
+==1018993== 
+==1018993== For lists of detected and suppressed errors, rerun with: -s
+==1018993== ERROR SUMMARY: 97 errors from 11 contexts (suppressed: 0 from 0)

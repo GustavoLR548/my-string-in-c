@@ -2,8 +2,8 @@
 
 int main() {
 
-    string* array = new_string_array(5);
-    size_t n = array->array_size;
+    int n = 5;
+    string* array = new_string_array(n);
     
     for(int i = 0; i < n; i++) {
         array[i] = read_line();
@@ -13,7 +13,5 @@ int main() {
         printf("%s\n", to_char_array(&array[i]));
     }
 
-    for(int i = 0; i < n; i++) {
-        free_string(&array[i]);
-    }
+    free_string_array(array,n);
 }
